@@ -1,0 +1,13 @@
+Paneles:
+Completados:
+	Splash
+	Login
+
+Faltantes:
+	Login[se inicia sesion correctamente
+	Login[no se inicia sesion correctamente
+	
+	Menu Principal
+		{Interaccion con el menu
+			-Mi Cuenta{Actualizacion de datos
+	
