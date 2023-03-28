@@ -13,6 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
@@ -44,14 +47,15 @@ public class Ventana extends JFrame{
 		login.setLayout(null);
 		login.setSize(700,500);
 		login.setBackground(Color.decode("#6BCCE4"));
+		
 		JLabel labelUsuario = new JLabel("Nombre de usuario:");
 		JLabel labelContrasena = new JLabel("Contraseña de acceso:");
 		labelUsuario.setSize(220,20);
 		labelUsuario.setLocation(60,280);
-		labelUsuario.setFont(new Font("Cambria", Font.BOLD, 20));
+		labelUsuario.setFont(new Font("Calibri", Font.BOLD, 20));
 		labelContrasena.setSize(220,20);
 		labelContrasena.setLocation(60,340);
-		labelContrasena.setFont(new Font("Cambria", Font.BOLD, 20));
+		labelContrasena.setFont(new Font("Calibri", Font.BOLD, 20));
 		TextField tfUsuario = new TextField();
 		tfUsuario.setSize(240,30);
 		tfUsuario.setLocation(300,280);
@@ -95,6 +99,42 @@ public class Ventana extends JFrame{
 		
 		
 		
+		JPanel menuPrincipal = new JPanel();
+		menuPrincipal.setVisible(true);
+		menuPrincipal.setSize(700, 500);
+		menuPrincipal.setLayout(null);
+		JLabel imgUsr2= new JLabel(imagenUsuario);
+		imgUsr2.setSize(180,158);
+		imgUsr2.setLocation(60,120);
+		menuPrincipal.add(imgUsr2);
+		String strUsuario="";
+		JLabel saludo= new JLabel("Hola"+strUsuario);
+		saludo.setSize(60,20);
+		saludo.setLocation(260,160);
+		saludo.setFont(new Font("Calibri", Font.BOLD, 20));
+		menuPrincipal.add(saludo);
+		menuPrincipal.setBackground(Color.decode("#6BCCE4"));
+		
+		JMenuBar menuBarraUsuario = new JMenuBar();
+		JMenu menuCuenta = new JMenu("Cuenta");
+		menuBarraUsuario.add(menuCuenta);
+		JMenu menuUsuario = new JMenu("Usuario");
+		menuBarraUsuario.add(menuUsuario);
+		JMenu menuAyuda = new JMenu("Ayuda");
+		menuBarraUsuario.add(menuAyuda);
+		JMenuItem miCuenta = new JMenuItem("Mi Cuenta");
+		menuCuenta.add(miCuenta);
+		JMenuItem mCerrarSesion = new JMenuItem("Cerrar Sesion");
+		menuCuenta.add(mCerrarSesion);
+		JMenuItem mListaUsuario = new JMenuItem("Lista de Usuarios");
+		menuUsuario.add(mListaUsuario);
+		JMenuItem mCrearUsuario = new JMenuItem("Crear Usuario");
+		menuUsuario.add(mCrearUsuario);
+		JMenuItem mAyuda = new JMenuItem("¿como creo un usuario?");
+		menuAyuda.add(mAyuda);
+		
+		
+		
 		Timer timer = new Timer();
 		
 		TimerTask remueveSplash = new TimerTask() {
@@ -102,7 +142,8 @@ public class Ventana extends JFrame{
 			@Override
 			public void run() {
 				remove(splash);
-				add(login);
+				add(menuPrincipal);
+				setJMenuBar(menuBarraUsuario);
 				revalidate();
 				repaint();
 				timer.cancel();
