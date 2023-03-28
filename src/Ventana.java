@@ -11,6 +11,7 @@ import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -18,7 +19,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.JTableHeader;
 
 public class Ventana extends JFrame{
 	public Ventana(){
@@ -200,8 +204,11 @@ public class Ventana extends JFrame{
 		menuMiCuenta.add(cancel1);
 		menuMiCuenta.add(aceptar1);
 		
-		Timer timer = new Timer();
 		
+		
+		
+
+		Timer timer = new Timer();
 		TimerTask remueveSplash = new TimerTask() {
 
 			@Override
