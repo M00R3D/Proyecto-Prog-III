@@ -113,12 +113,6 @@ public class Ventana extends JFrame{
 		return panelSplash;
 		}
 		
-		
-		
-		
-		
-		
-		
 		public JPanel panelLogin(){
 		JPanel panelLogin = new JPanel();
 		panelLogin.setLayout(null);
@@ -167,9 +161,7 @@ public class Ventana extends JFrame{
 		panelLogin.add(imgUsr);
 		return panelLogin;
 		}
-		
-		
-		
+
 		public JPanel menuPrincipal() {
 		
 			JPanel menuPrincipal = new JPanel();
@@ -192,213 +184,6 @@ public class Ventana extends JFrame{
 		
 		}
 		
-		
-		
-		JMenuBar menuBarraUsuario = new JMenuBar();
-		JMenu menuCuenta = new JMenu("Cuenta");
-		menuBarraUsuario.add(menuCuenta);
-		JMenu menuUsuario = new JMenu("Usuario");
-		menuBarraUsuario.add(menuUsuario);
-		JMenu menuAyuda = new JMenu("Ayuda");
-		menuBarraUsuario.add(menuAyuda);
-		JMenuItem miCuenta = new JMenuItem("Mi Cuenta");
-		menuCuenta.add(miCuenta);
-		
-		JMenuItem mCerrarSesion = new JMenuItem("Cerrar Sesion");
-		menuCuenta.add(mCerrarSesion);
-		JMenuItem mListaUsuario = new JMenuItem("Lista de Usuarios");
-		menuUsuario.add(mListaUsuario);
-		JMenuItem mpanelUsuario = new JMenuItem("Crear Usuario");
-		menuUsuario.add(mpanelUsuario);
-		JMenuItem mAyuda = new JMenuItem("¿como creo un usuario?");
-		menuAyuda.add(mAyuda);
-		
-		
-		
-		JPanel panelMiCuenta = new JPanel();
-		panelMiCuenta.setVisible(true);
-		panelMiCuenta.setLayout(null);
-		panelMiCuenta.setSize(700, 500);
-		panelMiCuenta.setBackground(Color.decode("#6BCCE4"));
-		JLabel nombre = new JLabel("Nombre: ");
-		nombre.setSize(150, 50);
-		nombre.setLocation(50, 100);
-		nombre.setFont(fuenteMed);
-		JLabel apellido = new JLabel("Apellido: ");
-		apellido.setSize(150, 50);
-		apellido.setLocation(50, 150);
-		apellido.setFont(fuenteMed);
-		JLabel email = new JLabel("Email: ");
-		email.setSize(150, 50);
-		email.setLocation(50, 200);
-		email.setFont(fuenteMed);
-		JLabel contraseña = new JLabel("Contraseña: ");
-		contraseña.setSize(150, 50);
-		contraseña.setLocation(50, 250);
-		contraseña.setFont(fuenteMed);
-		JLabel micuenta = new JLabel("Mi Cuenta Personal");
-		micuenta.setSize(200, 50);
-		micuenta.setLocation(420, 50);
-		micuenta.setFont(fuenteMed);
-		JLabel imgUsr3= new JLabel(imagenUsuario);
-		imgUsr3.setSize(180,158);
-		imgUsr3.setLocation(410,120);
-		JTextField campoNombre = new JTextField();
-		campoNombre.setSize(200, 40);
-		campoNombre.setLocation(150, 100);
-		JTextField campoApellido = new JTextField();
-		campoApellido.setSize(200, 40);
-		campoApellido.setLocation(150, 150);
-		JTextField campoEmail = new JTextField();
-		campoEmail.setSize(200, 40);
-		campoEmail.setLocation(150, 200);
-		JPasswordField campoContraseña = new JPasswordField();
-		campoContraseña.setSize(200, 40);
-		campoContraseña.setLocation(150, 250);
-		JButton cancel1 = new JButton("Cancelar");
-		cancel1.setSize(100, 35);
-		cancel1.setLocation(100, 330);
-		cancel1.setOpaque(true);
-		cancel1.setBackground(Color.decode("#DC143C"));
-		ActionListener oyenteAccion = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"¡No se Guardaron los Datos!");	
-			}
-		};
-		cancel1.addActionListener(oyenteAccion);
-		JButton aceptar1 = new JButton("Actualizar");
-		aceptar1.setSize(100, 35);
-		aceptar1.setLocation(250, 330);
-		aceptar1.setOpaque(true);
-		aceptar1.setBackground(Color.decode("#32CD32"));
-		ActionListener oyenteAccion2 = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"Los Datos Fueron Guardados Sin Promblemas");
-			}
-		};
-		aceptar1.addActionListener(oyenteAccion2);
-		panelMiCuenta.add(nombre);
-		panelMiCuenta.add(apellido);
-		panelMiCuenta.add(email);
-		panelMiCuenta.add(contraseña);
-		panelMiCuenta.add(micuenta);
-		panelMiCuenta.add(imgUsr3);
-		panelMiCuenta.add(campoNombre);
-		panelMiCuenta.add(campoApellido);
-		panelMiCuenta.add(campoEmail);
-		panelMiCuenta.add(campoContraseña);
-		panelMiCuenta.add(cancel1);
-		panelMiCuenta.add(aceptar1);
-		
-		JPanel panelUsuario = new JPanel();
-		panelUsuario.setLayout(null);
-		panelUsuario.setSize(700,500);
-		panelUsuario.setVisible(true);
-		panelUsuario.setBackground(Color.decode("#6BCCE4"));
-		JLabel crearNombre = new JLabel("Nombre: ");
-		crearNombre.setSize(150, 50);
-		crearNombre.setLocation(310, 100);
-		crearNombre.setFont(fuenteMed);
-		JLabel crearApellido = new JLabel("Apellido: ");
-		crearApellido.setSize(400, 50);
-		crearApellido.setLocation(310, 150);
-		crearApellido.setFont(fuenteMed);
-		JLabel crearEmail = new JLabel("Email: ");
-		crearEmail.setSize(150, 50);
-		crearEmail.setLocation(310, 200);
-		crearEmail.setFont(fuenteMed);
-		JLabel crearContraseña = new JLabel("Contraseña: ");
-		crearContraseña.setSize(150, 50);
-		crearContraseña.setLocation(290, 250);
-		crearContraseña.setFont(fuenteMed);
-		JLabel confirmarContraseña = new JLabel("<html><p> Confirmar<br>Contraseña:<p><html>");
-		confirmarContraseña.setSize(250, 50);
-		confirmarContraseña.setLocation(290, 295);
-		confirmarContraseña.setFont(fuenteMed);
-		JLabel micuenta2 = new JLabel("Crear Usuario");
-		micuenta2.setSize(200, 50);
-		micuenta2.setLocation(90, 70);
-		micuenta2.setFont(fuenteMed);
-		JLabel imgUsr4= new JLabel(imagenUsuario);
-		imgUsr4.setSize(180,158);
-		imgUsr4.setLocation(50,120);
-		JTextField crerCampoNombre = new JTextField();
-		crerCampoNombre.setSize(200, 40);
-		crerCampoNombre.setLocation(400, 100);
-		JTextField crearCampoApellido = new JTextField();
-		crearCampoApellido.setSize(200, 40);
-		crearCampoApellido.setLocation(400, 150);
-		JTextField crearCampoEmail = new JTextField();
-		crearCampoEmail.setSize(200, 40);
-		crearCampoEmail.setLocation(400, 200);
-		JPasswordField crearCampoContraseña = new JPasswordField();
-		crearCampoContraseña.setSize(200, 40);
-		crearCampoContraseña.setLocation(400, 250);
-		JPasswordField crearConfirmarContraseña1 = new JPasswordField();
-		crearConfirmarContraseña1.setSize(200, 40);
-		crearConfirmarContraseña1.setLocation(400, 300);
-		JButton cancel2 = new JButton("Cancelar");
-		cancel2.setSize(100, 45);
-		cancel2.setLocation(350, 360);
-		cancel2.setOpaque(true);
-		cancel2.setBackground(Color.decode("#DC143C"));
-		JButton aceptar2 = new JButton("Aceptar");
-		aceptar2.setSize(100, 45);
-		aceptar2.setLocation(500, 360);
-		aceptar2.setOpaque(true);
-		aceptar2.setBackground(Color.decode("#32CD32"));
-		
-		panelUsuario.add(micuenta2);
-		panelUsuario.add(crearNombre);
-		panelUsuario.add(crearApellido);
-		panelUsuario.add(crearEmail);
-		panelUsuario.add(crearContraseña);
-		panelUsuario.add(confirmarContraseña);
-		panelUsuario.add(imgUsr4);
-		panelUsuario.add(crerCampoNombre);
-		panelUsuario.add(crearCampoApellido);
-		panelUsuario.add(crearCampoEmail);
-		panelUsuario.add(crearCampoContraseña);
-		panelUsuario.add(crearConfirmarContraseña1);
-		panelUsuario.add(cancel2);
-		panelUsuario.add(aceptar2);
-		
-		JPanel panelTabla = new JPanel();
-		panelTabla.setVisible(true);
-		panelTabla.setLayout(null);
-		panelTabla.setSize(700, 500);
-		panelTabla.setBackground(Color.decode("#6BCCE4"));
-		JLabel listaUsuarios = new JLabel("Lista de usuarios");
-		listaUsuarios.setSize(160,30);
-		listaUsuarios.setLocation(260,60);
-		listaUsuarios.setFont(fuenteMed);
-		JComboBox<Object> combo = new JComboBox<Object>();
-		combo.setSize(240,30);
-		combo.setLocation(200,130);
-		combo.addItem("Job");
-		combo.addItem("Isaias");
-		JButton editarUsuario = new JButton("editar usuario " + combo.getSelectedItem());
-		editarUsuario.setSize(240,30);
-		editarUsuario.setLocation(200,180);
-		editarUsuario.setBackground(Color.green);
-		panelTabla.add(listaUsuarios);
-		panelTabla.add(combo);
-		panelTabla.add(editarUsuario);
-		String datos[][]= {{"","",""},{"","",""},{"","",""},{"","",""},{"","",""},{"","",""},{"","",""}
-		,{"","",""},{"","",""},{"","",""},{"","",""}
-		,{"","",""},{"","",""},{"","",""}};
-		String columnas[]= {"Usuario","Correo","Acciones"};
-		JTable tabla = new JTable(datos,columnas);
-		tabla.setSize(300,140);
-		tabla.setVisible(true);
-		JScrollPane scrol = new JScrollPane(tabla);
-		scrol.setSize(300,140);
-		scrol.setLocation(160,240);
-		scrol.setVisible(true);
-		panelTabla.add(scrol);
-
 		public JPanel panelMiCuenta()
 		{
 			JPanel panelMiCuenta = new JPanel();
@@ -548,9 +333,6 @@ public class Ventana extends JFrame{
 		}
 
 		
-		
-		
-		
 		public JPanel panelTabla()
 		{
 			JPanel panelTabla = new JPanel();
@@ -619,5 +401,4 @@ public class Ventana extends JFrame{
 			
 		return panelAyuda;
 		}
-		
 }
