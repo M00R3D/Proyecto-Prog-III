@@ -13,6 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
@@ -42,6 +45,7 @@ public class Ventana extends JFrame{
 		JPanel login = new JPanel();
 		login.setLayout(null);
 		login.setSize(700,500);
+		
 		JLabel labelUsuario = new JLabel("Nombre de usuario:");
 		JLabel labelContrasena = new JLabel("Contraseña de acceso:");
 		login.add(labelContrasena);
@@ -92,6 +96,39 @@ public class Ventana extends JFrame{
 		login.add(tfUsuario);
 		login.add(imgUsr);
 		
+		JPanel menuPrincipal = new JPanel();
+		menuPrincipal.setVisible(true);
+		menuPrincipal.setSize(700, 500);
+		menuPrincipal.setBackground(Color.decode("#6BCCE4"));
+		
+		JMenuBar menuBarraUsuario = new JMenuBar();
+		
+		JMenu menuCuenta = new JMenu("Cuenta");
+		menuBarraUsuario.add(menuCuenta);
+		
+		JMenu menuUsuario = new JMenu("Usuario");
+		menuBarraUsuario.add(menuUsuario);
+		
+		JMenu menuAyuda = new JMenu("Ayuda");
+		menuBarraUsuario.add(menuAyuda);
+		
+		JMenuItem miCuenta = new JMenuItem("Mi Cuenta");
+		menuCuenta.add(miCuenta);
+		
+		JMenuItem mCerrarSesion = new JMenuItem("Cerrar Sesion");
+		menuCuenta.add(mCerrarSesion);
+		
+		JMenuItem mListaUsuario = new JMenuItem("Lista de Usuarios");
+		menuUsuario.add(mListaUsuario);
+		
+		JMenuItem mCrearUsuario = new JMenuItem("Crear Usuario");
+		menuUsuario.add(mCrearUsuario);
+		
+		JMenuItem mAyuda = new JMenuItem("¿como creo un usuario?");
+		menuAyuda.add(mAyuda);
+		
+		
+		
 		Timer timer = new Timer();
 		
 		TimerTask remueveSplash = new TimerTask() {
@@ -99,7 +136,8 @@ public class Ventana extends JFrame{
 			@Override
 			public void run() {
 				remove(splash);
-				add(login);
+				add(menuPrincipal);
+				setJMenuBar(menuBarraUsuario);
 				revalidate();
 				repaint();
 				timer.cancel();
