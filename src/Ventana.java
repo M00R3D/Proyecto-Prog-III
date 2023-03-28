@@ -6,6 +6,9 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,6 +48,13 @@ public class Ventana extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setBackground(Color.black);
 		
+		
+		
+		this.route();
+
+		}
+		
+	public JMenuBar menuBarraUsuario() {
 		JMenuBar menuBarraUsuario = new JMenuBar();
 		JMenu menuCuenta = new JMenu("Cuenta");
 		menuBarraUsuario.add(menuCuenta);
@@ -62,11 +72,8 @@ public class Ventana extends JFrame{
 		menuUsuario.add(mpanelUsuario);
 		JMenuItem mAyuda = new JMenuItem("¿como creo un usuario?");
 		menuAyuda.add(mAyuda);
-		
-		this.route();
-
-		}
-		
+		return menuBarraUsuario;
+	}
 	public void route() {
 
 		if(gran_panel!=null) {
@@ -109,7 +116,7 @@ public class Ventana extends JFrame{
 					route();
 					timer.cancel();
 				}};
-			timer.schedule(remueveSplash,4*1000,1000);
+			timer.schedule(remueveSplash,1*1000,1000);
 		return panelSplash;
 		}
 		
@@ -142,15 +149,52 @@ public class Ventana extends JFrame{
 		acept.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("x");
-			}});
+				
+				String email=tfUsuario.getText();
+				
+				char[] pw =tfContrasena.getPassword();
+				String pass = new String(pw);
+				
+//				System.out.println(email);
+//				System.out.println(pass);
+				BufferedReader br; 
+				try{
+					br = new BufferedReader(new FileReader("User.txt"));
+					String linea = br.readLine();
+					
+					while(linea!=null) 
+					{
+						String[] datos=null;
+						datos=linea.split(",");
+						if(datos[2].equals(email) &&
+								datos[3].equals(pass))
+						{
+							JOptionPane.showMessageDialog(null,"Bienvenido Usuario");
+							anterior = actual;
+							actual = "menuPrincipal";
+							setJMenuBar(menuBarraUsuario());
+
+							route();	
+						}
+						linea=br.readLine();
+					}
+				
+				}catch(IOException e1)
+				{
+					e1.printStackTrace();
+					
+				}
+				
+						}
+					});
 		JButton cancel=new JButton(cancelar);
 		cancel.setLocation(150,410);
 		cancel.setSize(120,35);
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("x");
+				JOptionPane.showMessageDialog(null,"¡No se Guardaron los Datos!");
+				
 			}});
 		panelLogin.add(labelContrasena);
 		panelLogin.add(labelUsuario);
