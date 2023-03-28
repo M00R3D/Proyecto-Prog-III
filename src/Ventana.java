@@ -256,7 +256,9 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null,"¡No se Guardaron los Datos!");
-				
+				actual = anterior;
+				anterior = "panelSplash";
+				route();
 			}});
 		panelLogin.add(labelContrasena);
 		panelLogin.add(labelUsuario);
@@ -337,6 +339,16 @@ public class Ventana extends JFrame{
 			cancel1.setLocation(100, 330);
 			cancel1.setOpaque(true);
 			cancel1.setBackground(Color.decode("#DC143C"));
+			cancel1.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					actual = anterior;
+					anterior = "panelSplash";
+					route();
+					
+					
+				}});
 			JButton aceptar1 = new JButton("Actualizar");
 			aceptar1.setSize(100, 35);
 			aceptar1.setLocation(250, 330);
@@ -414,6 +426,14 @@ public class Ventana extends JFrame{
 			cancel2.setLocation(350, 360);
 			cancel2.setOpaque(true);
 			cancel2.setBackground(Color.decode("#DC143C"));
+			cancel2.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					actual = anterior;
+					anterior = "panelSplash";
+					route();					
+				}});
 			JButton aceptar2 = new JButton("Aceptar");
 			aceptar2.setSize(100, 45);
 			aceptar2.setLocation(500, 360);
@@ -501,6 +521,14 @@ public class Ventana extends JFrame{
 			crearUsuario.setSize(240,30);
 			crearUsuario.setLocation(200,280);
 			crearUsuario.setBackground(Color.green);
+			crearUsuario.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					anterior = actual;
+					actual = "panelUsuario";
+					route();					
+				}});
 			panelAyuda.add(pregunta1);
 			panelAyuda.add(respuesta);
 			panelAyuda.add(crearUsuario);
