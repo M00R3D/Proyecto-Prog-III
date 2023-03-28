@@ -18,6 +18,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class Ventana extends JFrame{
 	public Ventana(){
@@ -41,7 +42,7 @@ public class Ventana extends JFrame{
 		splash.add(splashLogo);
 		this.add(splash);
 		
-		
+		Font fuenteMed = (new Font("Calibri", Font.BOLD, 20));
 		
 		JPanel login = new JPanel();
 		login.setLayout(null);
@@ -52,10 +53,10 @@ public class Ventana extends JFrame{
 		JLabel labelContrasena = new JLabel("Contraseña de acceso:");
 		labelUsuario.setSize(220,20);
 		labelUsuario.setLocation(60,280);
-		labelUsuario.setFont(new Font("Calibri", Font.BOLD, 20));
+		labelUsuario.setFont(fuenteMed);
 		labelContrasena.setSize(220,20);
 		labelContrasena.setLocation(60,340);
-		labelContrasena.setFont(new Font("Calibri", Font.BOLD, 20));
+		labelContrasena.setFont(fuenteMed);
 		TextField tfUsuario = new TextField();
 		tfUsuario.setSize(240,30);
 		tfUsuario.setLocation(300,280);
@@ -111,7 +112,7 @@ public class Ventana extends JFrame{
 		JLabel saludo= new JLabel("Hola"+strUsuario);
 		saludo.setSize(60,20);
 		saludo.setLocation(260,160);
-		saludo.setFont(new Font("Calibri", Font.BOLD, 20));
+		saludo.setFont(fuenteMed);
 		menuPrincipal.add(saludo);
 		menuPrincipal.setBackground(Color.decode("#6BCCE4"));
 		
@@ -133,7 +134,71 @@ public class Ventana extends JFrame{
 		JMenuItem mAyuda = new JMenuItem("¿como creo un usuario?");
 		menuAyuda.add(mAyuda);
 		
+		JPanel menuMiCuenta = new JPanel();
+		menuMiCuenta.setVisible(true);
+		menuMiCuenta.setLayout(null);
+		menuMiCuenta.setSize(700, 500);
+		menuMiCuenta.setBackground(Color.decode("#6BCCE4"));
 		
+		JLabel nombre = new JLabel("Nombre: ");
+		nombre.setSize(150, 50);
+		nombre.setLocation(50, 100);
+		nombre.setFont(fuenteMed);
+		JLabel apellido = new JLabel("Apellido: ");
+		apellido.setSize(150, 50);
+		apellido.setLocation(50, 150);
+		apellido.setFont(fuenteMed);
+		JLabel email = new JLabel("Email: ");
+		email.setSize(150, 50);
+		email.setLocation(50, 200);
+		email.setFont(fuenteMed);
+		JLabel contraseña = new JLabel("Contraseña: ");
+		contraseña.setSize(150, 50);
+		contraseña.setLocation(50, 250);
+		contraseña.setFont(fuenteMed);
+		JLabel micuenta = new JLabel("Mi Cuenta Personal");
+		micuenta.setSize(200, 50);
+		micuenta.setLocation(420, 50);
+		micuenta.setFont(fuenteMed);
+		JLabel imgUsr3= new JLabel(imagenUsuario);
+		imgUsr3.setSize(180,158);
+		imgUsr3.setLocation(410,120);
+		
+		JTextField campoNombre = new JTextField();
+		campoNombre.setSize(200, 40);
+		campoNombre.setLocation(150, 100);
+		JTextField campoApellido = new JTextField();
+		campoApellido.setSize(200, 40);
+		campoApellido.setLocation(150, 150);
+		JTextField campoEmail = new JTextField();
+		campoEmail.setSize(200, 40);
+		campoEmail.setLocation(150, 200);
+		JPasswordField campoContraseña = new JPasswordField();
+		campoContraseña.setSize(200, 40);
+		campoContraseña.setLocation(150, 250);
+		
+		JButton cancel1 = new JButton("cancelar");
+		cancel1.setSize(100, 35);
+		cancel1.setLocation(100, 330);
+		
+		JButton aceptar1 = new JButton("aceptar");
+		aceptar1.setSize(100, 35);
+		aceptar1.setLocation(250, 330);
+		
+		menuMiCuenta.add(nombre);
+		menuMiCuenta.add(apellido);
+		menuMiCuenta.add(email);
+		menuMiCuenta.add(contraseña);
+		menuMiCuenta.add(micuenta);
+		menuMiCuenta.add(imgUsr3);
+	
+		menuMiCuenta.add(campoNombre);
+		menuMiCuenta.add(campoApellido);
+		menuMiCuenta.add(campoEmail);
+		menuMiCuenta.add(campoContraseña);
+		
+		menuMiCuenta.add(cancel1);
+		menuMiCuenta.add(aceptar1);
 		
 		Timer timer = new Timer();
 		
@@ -142,7 +207,7 @@ public class Ventana extends JFrame{
 			@Override
 			public void run() {
 				remove(splash);
-				add(menuPrincipal);
+				add(menuMiCuenta);
 				setJMenuBar(menuBarraUsuario);
 				revalidate();
 				repaint();
