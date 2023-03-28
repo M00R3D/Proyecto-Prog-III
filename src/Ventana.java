@@ -240,7 +240,7 @@ public class Ventana extends JFrame{
 			ImageIcon splashGif= new ImageIcon("Splash.gif");
 			JLabel splashLogo= new JLabel(splashGif);
 			splashLogo.setSize(700,600);
-			splashLogo.setLocation(0,0);
+			splashLogo.setLocation(0,-74);
 			panelSplash.add(splashLogo);
 			Timer timer = new Timer();
 			TimerTask remueveSplash = new TimerTask() {
@@ -253,7 +253,7 @@ public class Ventana extends JFrame{
 					route();
 					timer.cancel();
 				}};
-			timer.schedule(remueveSplash,1*1000,1000);
+			timer.schedule(remueveSplash,4*1000,1000);
 		return panelSplash;
 		}
 		

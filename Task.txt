@@ -1,4 +1,4 @@
-BOTONES:
+BOTONES:(LISTO)
 
 
 					actualizar datos //						----cancelar 								
