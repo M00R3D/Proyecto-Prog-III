@@ -64,16 +64,67 @@ public class Ventana extends JFrame{
 		menuBarraUsuario.add(menuAyuda);
 		JMenuItem miCuenta = new JMenuItem("Mi Cuenta");
 		menuCuenta.add(miCuenta);
+		miCuenta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+				actual = "panelMiCuenta";
+				setJMenuBar(menuBarraUsuario());
+				route();				
+			}});
 		JMenuItem mCerrarSesion = new JMenuItem("Cerrar Sesion");
+		mCerrarSesion.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+				actual = "panelSplash";
+				setJMenuBar(null);
+				route();
+			}});
 		menuCuenta.add(mCerrarSesion);
 		JMenuItem mListaUsuario = new JMenuItem("Lista de Usuarios");
+		mListaUsuario.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+				actual = "panelTabla";
+				route();
+				
+			}});
 		menuUsuario.add(mListaUsuario);
 		JMenuItem mpanelUsuario = new JMenuItem("Crear Usuario");
+		mpanelUsuario.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+				actual = "panelUsuario";
+				route();
+				
+				
+			}});
 		menuUsuario.add(mpanelUsuario);
 		JMenuItem mAyuda = new JMenuItem("¿como creo un usuario?");
+		mAyuda.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				anterior = actual;
+				actual = "panelAyuda";
+				route();
+				
+				
+			}});
 		menuAyuda.add(mAyuda);
 		return menuBarraUsuario;
 	}
+	
+	
+	
+	
 	public void route() {
 
 		if(gran_panel!=null) {
@@ -89,7 +140,19 @@ public class Ventana extends JFrame{
 		if(actual.equals("menuPrincipal")) { 
 			gran_panel = menuPrincipal();  
 		}
-
+		if(actual.equals("panelMiCuenta")) { 
+			gran_panel = panelMiCuenta();  
+		}
+		if(actual.equals("panelTabla")) { 
+			gran_panel = panelTabla();  
+		}
+		if(actual.equals("panelUsuario")) { 
+			gran_panel = panelUsuario();  
+		}
+		if(actual.equals("panelAyuda")) { 
+			gran_panel = panelAyuda();  
+		}
+		
 		this.add(gran_panel);
 		this.revalidate();
 		this.repaint(); 
@@ -173,7 +236,6 @@ public class Ventana extends JFrame{
 							anterior = actual;
 							actual = "menuPrincipal";
 							setJMenuBar(menuBarraUsuario());
-
 							route();	
 						}
 						linea=br.readLine();
