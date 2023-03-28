@@ -506,12 +506,51 @@ public class Ventana extends JFrame{
 			JComboBox<Object> combo = new JComboBox<Object>();
 			combo.setSize(240,30);
 			combo.setLocation(200,130);
-			combo.addItem("Job");
-			combo.addItem("Isaias");
+			
+			
 			JButton editarUsuario = new JButton("editar usuario " + combo.getSelectedItem());
 			editarUsuario.setSize(240,30);
 			editarUsuario.setLocation(200,180);
 			editarUsuario.setBackground(Color.green);
+			combo.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					editarUsuario.setText("editar usuario " + combo.getSelectedItem());
+				}});
+			editarUsuario.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String name=(String) combo.getSelectedItem();
+					
+					BufferedReader br; 
+					try{
+						br = new BufferedReader(new FileReader("User.txt"));
+						String linea = br.readLine();
+						
+						while(linea!=null) 
+						{
+							String[] datos=null;
+							datos=linea.split(",");
+							if(datos[0].equals(name))
+							{
+								anterior = actual;
+								actual = "panelMiCuenta";
+								route();	
+							}
+							linea=br.readLine();
+						}
+					
+					}catch(IOException e1)
+					{
+						e1.printStackTrace();
+						
+					}
+					
+							}
+						});
+			
 			panelTabla.add(listaUsuarios);
 			panelTabla.add(combo);
 			panelTabla.add(editarUsuario);
@@ -533,6 +572,7 @@ public class Ventana extends JFrame{
 							data=linea.split(",");
 							datos[a][0]=data[0];
 							datos[a][1]=data[2];
+							combo.addItem(data[0]);
 							a++;
 							linea=br.readLine();
 						}
