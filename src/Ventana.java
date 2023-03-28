@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -132,6 +133,7 @@ public class Ventana extends JFrame{
 		menuBarraUsuario.add(menuAyuda);
 		JMenuItem miCuenta = new JMenuItem("Mi Cuenta");
 		menuCuenta.add(miCuenta);
+		
 		JMenuItem mCerrarSesion = new JMenuItem("Cerrar Sesion");
 		menuCuenta.add(mCerrarSesion);
 		JMenuItem mListaUsuario = new JMenuItem("Lista de Usuarios");
@@ -188,11 +190,25 @@ public class Ventana extends JFrame{
 		cancel1.setLocation(100, 330);
 		cancel1.setOpaque(true);
 		cancel1.setBackground(Color.decode("#DC143C"));
+		ActionListener oyenteAccion = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,"¡No se Guardaron los Datos!");	
+			}
+		};
+		cancel1.addActionListener(oyenteAccion);
 		JButton aceptar1 = new JButton("Actualizar");
 		aceptar1.setSize(100, 35);
 		aceptar1.setLocation(250, 330);
 		aceptar1.setOpaque(true);
 		aceptar1.setBackground(Color.decode("#32CD32"));
+		ActionListener oyenteAccion2 = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,"Los Datos Fueron Guardados Sin Promblemas");
+			}
+		};
+		aceptar1.addActionListener(oyenteAccion2);
 		panelMiCuenta.add(nombre);
 		panelMiCuenta.add(apellido);
 		panelMiCuenta.add(email);
@@ -346,7 +362,7 @@ public class Ventana extends JFrame{
 			@Override
 			public void run() {
 				remove(panelSplash);
-				add(panelAyuda);
+				add(panelMiCuenta);
 				setJMenuBar(menuBarraUsuario);
 				revalidate();
 				repaint();
