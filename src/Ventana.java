@@ -181,13 +181,16 @@ public class Ventana extends JFrame{
 		campoContraseña.setSize(200, 40);
 		campoContraseña.setLocation(150, 250);
 		
-		JButton cancel1 = new JButton("cancelar");
+		JButton cancel1 = new JButton("Cancelar");
 		cancel1.setSize(100, 35);
 		cancel1.setLocation(100, 330);
-		
-		JButton aceptar1 = new JButton("aceptar");
+		cancel1.setOpaque(true);
+		cancel1.setBackground(Color.decode("#DC143C"));
+		JButton aceptar1 = new JButton("Actualizar");
 		aceptar1.setSize(100, 35);
 		aceptar1.setLocation(250, 330);
+		aceptar1.setOpaque(true);
+		aceptar1.setBackground(Color.decode("#32CD32"));
 		
 		menuMiCuenta.add(nombre);
 		menuMiCuenta.add(apellido);
@@ -204,6 +207,116 @@ public class Ventana extends JFrame{
 		menuMiCuenta.add(cancel1);
 		menuMiCuenta.add(aceptar1);
 		
+		JPanel crearUsuario = new JPanel();
+		crearUsuario.setLayout(null);
+		crearUsuario.setSize(700,500);
+		crearUsuario.setVisible(true);
+		crearUsuario.setBackground(Color.decode("#6BCCE4"));
+		
+		JLabel crearNombre = new JLabel("Nombre: ");
+		crearNombre.setSize(150, 50);
+		crearNombre.setLocation(310, 100);
+		crearNombre.setFont(fuenteMed);
+		JLabel crearApellido = new JLabel("Apellido: ");
+		crearApellido.setSize(400, 50);
+		crearApellido.setLocation(310, 150);
+		crearApellido.setFont(fuenteMed);
+		JLabel crearEmail = new JLabel("Email: ");
+		crearEmail.setSize(150, 50);
+		crearEmail.setLocation(310, 200);
+		crearEmail.setFont(fuenteMed);
+		JLabel crearContraseña = new JLabel("Contraseña: ");
+		crearContraseña.setSize(150, 50);
+		crearContraseña.setLocation(290, 250);
+		crearContraseña.setFont(fuenteMed);
+		JLabel confirmarContraseña = new JLabel("<html><p> Confirmar<br>Contraseña:<p><html>");
+		confirmarContraseña.setSize(250, 50);
+		confirmarContraseña.setLocation(290, 295);
+		confirmarContraseña.setFont(fuenteMed);
+		JLabel micuenta2 = new JLabel("Crear Usuario");
+		micuenta2.setSize(200, 50);
+		micuenta2.setLocation(90, 70);
+		micuenta2.setFont(fuenteMed);
+		JLabel imgUsr4= new JLabel(imagenUsuario);
+		imgUsr4.setSize(180,158);
+		imgUsr4.setLocation(50,120);
+		
+		JTextField crerCampoNombre = new JTextField();
+		crerCampoNombre.setSize(200, 40);
+		crerCampoNombre.setLocation(400, 100);
+		JTextField crearCampoApellido = new JTextField();
+		crearCampoApellido.setSize(200, 40);
+		crearCampoApellido.setLocation(400, 150);
+		JTextField crearCampoEmail = new JTextField();
+		crearCampoEmail.setSize(200, 40);
+		crearCampoEmail.setLocation(400, 200);
+		JPasswordField crearCampoContraseña = new JPasswordField();
+		crearCampoContraseña.setSize(200, 40);
+		crearCampoContraseña.setLocation(400, 250);
+		JPasswordField crearConfirmarContraseña1 = new JPasswordField();
+		crearConfirmarContraseña1.setSize(200, 40);
+		crearConfirmarContraseña1.setLocation(400, 300);
+		
+		JButton cancel2 = new JButton("Cancelar");
+		cancel2.setSize(100, 45);
+		cancel2.setLocation(350, 360);
+		cancel2.setOpaque(true);
+		cancel2.setBackground(Color.decode("#DC143C"));
+		JButton aceptar2 = new JButton("Aceptar");
+		aceptar2.setSize(100, 45);
+		aceptar2.setLocation(500, 360);
+		aceptar2.setOpaque(true);
+		aceptar2.setBackground(Color.decode("#32CD32"));
+		
+		crearUsuario.add(micuenta2);
+		crearUsuario.add(crearNombre);
+		crearUsuario.add(crearApellido);
+		crearUsuario.add(crearEmail);
+		crearUsuario.add(crearContraseña);
+		crearUsuario.add(confirmarContraseña);
+		crearUsuario.add(imgUsr4);
+		
+		crearUsuario.add(crerCampoNombre);
+		crearUsuario.add(crearCampoApellido);
+		crearUsuario.add(crearCampoEmail);
+		crearUsuario.add(crearCampoContraseña);
+		crearUsuario.add(crearConfirmarContraseña1);
+		
+		crearUsuario.add(cancel2);
+		crearUsuario.add(aceptar2);
+		
+		JPanel menuTabla = new JPanel();
+		menuTabla.setVisible(true);
+		menuTabla.setLayout(null);
+		menuTabla.setSize(700, 500);
+		menuTabla.setBackground(Color.decode("#6BCCE4"));
+		JLabel listaUsuarios = new JLabel("Lista de usuarios");
+		listaUsuarios.setSize(160,30);
+		listaUsuarios.setLocation(260,60);
+		listaUsuarios.setFont(fuenteMed);
+		JComboBox<String> combo = new JComboBox<String>();
+		combo.setSize(240,30);
+		combo.setLocation(200,130);
+		combo.addItem("Job");
+		combo.addItem("Isaias");
+		JButton editarUsuario = new JButton("editar usuario " + combo.getSelectedItem());
+		editarUsuario.setSize(240,30);
+		editarUsuario.setLocation(200,180);
+		editarUsuario.setBackground(Color.green);
+		menuTabla.add(listaUsuarios);
+		menuTabla.add(combo);
+		menuTabla.add(editarUsuario);
+		String datos[][]= {{"","",""},{"","",""},{"","",""}};
+		String columnas[]= {"Usuario","Correo","Acciones"};
+		JTable tabla = new JTable(datos,columnas);
+		tabla.setSize(300,200);
+		tabla.setLocation(160,300);
+		tabla.setVisible(true);
+		JScrollPane scrol = new JScrollPane(tabla);
+//		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scrol.setVisible(true);
+		menuTabla.add(scrol);
+		
 		
 		
 		
@@ -214,7 +327,7 @@ public class Ventana extends JFrame{
 			@Override
 			public void run() {
 				remove(splash);
-				add(menuMiCuenta);
+				add(menuTabla);
 				setJMenuBar(menuBarraUsuario);
 				revalidate();
 				repaint();
