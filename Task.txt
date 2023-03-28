@@ -1,6 +1,7 @@
 BOTONES:
-	actualizar datos //						----cancelar
-		 								
+
+
+					actualizar datos //						----cancelar 								
 	 				----editar usuario //----acciones combobox //---- refrescar tabla //añadir cancel(?
 					cancelar del login----
 						----crear usuario //		----cancelar

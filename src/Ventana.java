@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -40,6 +42,15 @@ public class Ventana extends JFrame{
 	private String actual = "panelSplash";
 	private String anterior = "panelSplash";
 	private JPanel gran_panel = null;
+	private String usuarioActual ="";
+	private String texoGuardado  ="";
+	private int noUsuarios;
+	private String n;
+	private String a;
+	private String m;
+	private String p;
+
+	
 	
 	public Ventana(){
 		
@@ -160,6 +171,67 @@ public class Ventana extends JFrame{
 		this.repaint(); 
 	}	
 	
+	public int totalUsuarios(FileReader fr, BufferedReader br) throws IOException
+	{
+		noUsuarios = 0;
+		while(br.readLine()!=null) {
+		noUsuarios++;
+		}
+		br.close();		
+		return noUsuarios;
+	} 
+	
+	public String[] guardarUsuariosTemp() throws IOException 
+	{
+		FileReader fr = new FileReader("User.txt");
+		BufferedReader br = new BufferedReader(fr);
+		String[] str = new String[totalUsuarios(fr, br)];
+		fr= new FileReader("User.txt");
+		br= new BufferedReader(fr);
+		int pos=0;
+		String dusuario;
+		while((dusuario=br.readLine())!=null) {
+		String nombreAEditar = usuarioActual;
+			if(dusuario.split(",")[0].equalsIgnoreCase(nombreAEditar))
+			{
+				String nString = (n+","+a+","+m+","+p+"\n");
+				str[pos]=nString;
+			}else {
+				str[pos]=new String(dusuario.split(",")[0]+","+dusuario.split(",")[1]+","+dusuario.split(",")[2]+","+dusuario.split(",")[3]+"\n");
+			}
+			pos++;
+		}
+		new PrintWriter("User.txt").write("");
+		new PrintWriter("User.txt").close();
+		br.close();
+		fr.close();
+		return str;
+	}
+	
+	public void actualizarDatosUsuario() 
+	{
+		FileWriter fr=null;
+		BufferedWriter bw=null;
+		try {
+		String[] usrs=guardarUsuariosTemp();
+		fr= new FileWriter("User.txt",true);
+		bw= new BufferedWriter(fr);
+		for (int i=0; i<usrs.length;i++) {
+			bw.write(usrs[i]);
+		}
+		}catch(IOException ex) {
+			System.out.println("sadfa");
+
+		}finally {
+			try {
+			bw.close();
+			fr.close();
+			}catch(IOException ex) {
+				System.out.println("sadfa");
+			}
+		}
+	}
+	
 		public JPanel panelSplash() {
 		
 			JPanel panelSplash = new JPanel();
@@ -238,6 +310,7 @@ public class Ventana extends JFrame{
 							anterior = actual;
 							actual = "menuPrincipal";
 							setJMenuBar(menuBarraUsuario());
+							usuarioActual=datos[0];
 							route();	
 						}
 						linea=br.readLine();
@@ -257,7 +330,6 @@ public class Ventana extends JFrame{
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null,"¡No se Guardaron los Datos!");
 				actual = anterior;
 				anterior = "panelSplash";
 				route();
@@ -282,8 +354,8 @@ public class Ventana extends JFrame{
 			imgUsr2.setSize(180,158);
 			imgUsr2.setLocation(60,120);
 			menuPrincipal.add(imgUsr2);
-			String strUsuario="";
-			JLabel saludo= new JLabel("Hola"+strUsuario);
+			String strUsuario="Hola "+usuarioActual;
+			JLabel saludo= new JLabel(strUsuario);
 			saludo.setSize(60,20);
 			saludo.setLocation(260,160);
 			saludo.setFont(fuenteMed);
@@ -317,7 +389,8 @@ public class Ventana extends JFrame{
 			contraseña.setSize(150, 50);
 			contraseña.setLocation(50, 250);
 			contraseña.setFont(fuenteMed);
-			JLabel micuenta = new JLabel("Mi Cuenta Personal");
+			String strMiCuenta=("Cuenta Personal de " + usuarioActual);
+			JLabel micuenta = new JLabel(strMiCuenta);
 			micuenta.setSize(200, 50);
 			micuenta.setLocation(420, 50);
 			micuenta.setFont(fuenteMed);
@@ -333,9 +406,9 @@ public class Ventana extends JFrame{
 			JTextField campoEmail = new JTextField();
 			campoEmail.setSize(200, 40);
 			campoEmail.setLocation(150, 200);
-			JPasswordField campoContraseña = new JPasswordField();
-			campoContraseña.setSize(200, 40);
-			campoContraseña.setLocation(150, 250);
+			JPasswordField campoContrasena = new JPasswordField();
+			campoContrasena.setSize(200, 40);
+			campoContrasena.setLocation(150, 250);
 			JButton cancel1 = new JButton("Cancelar");
 			cancel1.setSize(100, 35);
 			cancel1.setLocation(100, 330);
@@ -356,6 +429,20 @@ public class Ventana extends JFrame{
 			aceptar1.setLocation(250, 330);
 			aceptar1.setOpaque(true);
 			aceptar1.setBackground(Color.decode("#32CD32"));
+			aceptar1.addActionListener(new ActionListener() {
+
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					n=campoNombre.getText();
+					a=campoApellido.getText();
+					m=campoEmail.getText();
+					char[] pas=campoContrasena.getPassword();
+					p=new String(pas);
+					actualizarDatosUsuario();
+					JOptionPane.showMessageDialog(null,"Usuario actualizado correctamente");
+					usuarioActual=n;
+				}});
 			panelMiCuenta.add(nombre);
 			panelMiCuenta.add(apellido);
 			panelMiCuenta.add(email);
@@ -365,7 +452,7 @@ public class Ventana extends JFrame{
 			panelMiCuenta.add(campoNombre);
 			panelMiCuenta.add(campoApellido);
 			panelMiCuenta.add(campoEmail);
-			panelMiCuenta.add(campoContraseña);
+			panelMiCuenta.add(campoContrasena);
 			panelMiCuenta.add(cancel1);
 			panelMiCuenta.add(aceptar1);
 			
@@ -447,10 +534,10 @@ public class Ventana extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					BufferedWriter writer;
 
-					String n = crerCampoNombre.getText();
-					String a = crearCampoApellido.getText();
-					String m = crearCampoEmail.getText();
-					String p = new String(crearCampoContrasena.getPassword());
+					n = crerCampoNombre.getText();
+					a = crearCampoApellido.getText();
+					m = crearCampoEmail.getText();
+					p = new String(crearCampoContrasena.getPassword());
 
 					try {
 
@@ -523,7 +610,7 @@ public class Ventana extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					String name=(String) combo.getSelectedItem();
-					
+					usuarioActual=name;
 					BufferedReader br; 
 					try{
 						br = new BufferedReader(new FileReader("User.txt"));
