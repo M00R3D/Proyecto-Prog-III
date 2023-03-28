@@ -26,6 +26,8 @@ public class Ventana extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setBackground(Color.black);
 		
+		
+		
 		JPanel splash = new JPanel();
 		splash.setSize(700,500);
 		splash.setLayout(null);
@@ -38,14 +40,12 @@ public class Ventana extends JFrame{
 		
 		
 		
-
 		JPanel login = new JPanel();
 		login.setLayout(null);
 		login.setSize(700,500);
+		login.setBackground(Color.decode("#6BCCE4"));
 		JLabel labelUsuario = new JLabel("Nombre de usuario:");
 		JLabel labelContrasena = new JLabel("Contraseña de acceso:");
-		login.add(labelContrasena);
-		login.add(labelUsuario);
 		labelUsuario.setSize(220,20);
 		labelUsuario.setLocation(60,280);
 		labelUsuario.setFont(new Font("Cambria", Font.BOLD, 20));
@@ -58,16 +58,12 @@ public class Ventana extends JFrame{
 		JPasswordField tfContrasena = new JPasswordField();
 		tfContrasena.setSize(240,30);
 		tfContrasena.setLocation(300,340);
-		login.setBackground(Color.decode("#6BCCE4"));
-
 		ImageIcon imagenUsuario = new ImageIcon("user.png");
 		JLabel imgUsr = new JLabel(imagenUsuario);
 		imgUsr.setSize(180,158);
 		imgUsr.setLocation(270,60);
-				
 		ImageIcon aceptar = new ImageIcon("aceptar.png");
 		ImageIcon cancelar = new ImageIcon("cancelar.png");
-		
 		JButton acept=new JButton(aceptar);
 		acept.setLocation(350,410);
 		acept.setSize(120,35);
@@ -80,17 +76,24 @@ public class Ventana extends JFrame{
 		cancel.setLocation(150,410);
 		cancel.setSize(120,35);
 		cancel.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("x");
 			}});
-		
+		login.add(labelContrasena);
+		login.add(labelUsuario);
 		login.add(acept);
 		login.add(cancel);
 		login.add(tfContrasena);
 		login.add(tfUsuario);
 		login.add(imgUsr);
+		
+		
+		
+		JPanel modificarUsuario = new JPanel();
+		modificarUsuario.add(imgUsr);
+		
+		
 		
 		Timer timer = new Timer();
 		
