@@ -294,7 +294,7 @@ public class Ventana extends JFrame{
 		listaUsuarios.setSize(160,30);
 		listaUsuarios.setLocation(260,60);
 		listaUsuarios.setFont(fuenteMed);
-		JComboBox<String> combo = new JComboBox<String>();
+		JComboBox<Object> combo = new JComboBox<Object>();
 		combo.setSize(240,30);
 		combo.setLocation(200,130);
 		combo.addItem("Job");
@@ -306,13 +306,17 @@ public class Ventana extends JFrame{
 		menuTabla.add(listaUsuarios);
 		menuTabla.add(combo);
 		menuTabla.add(editarUsuario);
-		String datos[][]= {{"","",""},{"","",""},{"","",""}};
+		String datos[][]= {{"","",""},{"","",""},{"","",""},{"","",""},{"","",""},{"","",""},{"","",""}
+		,{"","",""},{"","",""},{"","",""},{"","",""}
+		,{"","",""},{"","",""},{"","",""}};
 		String columnas[]= {"Usuario","Correo","Acciones"};
 		JTable tabla = new JTable(datos,columnas);
-		tabla.setSize(300,200);
-		tabla.setLocation(160,300);
+		tabla.setSize(300,140);
 		tabla.setVisible(true);
 		JScrollPane scrol = new JScrollPane(tabla);
+		scrol.setSize(300,140);
+		scrol.setLocation(160,240);
+
 //		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		scrol.setVisible(true);
 		menuTabla.add(scrol);
