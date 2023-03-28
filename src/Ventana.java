@@ -6,6 +6,9 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -108,7 +112,7 @@ public class Ventana extends JFrame{
 					route();
 					timer.cancel();
 				}};
-			timer.schedule(remueveSplash,4*1000,1000);
+			timer.schedule(remueveSplash,1*1000,1000);
 		return panelSplash;
 		}
 		
@@ -147,8 +151,42 @@ public class Ventana extends JFrame{
 		acept.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("x");
-			}});
+				
+				String email=tfUsuario.getText();
+				
+				char[] pw =tfContrasena.getPassword();
+				String pass = new String(pw);
+				
+//				System.out.println(email);
+//				System.out.println(pass);
+				BufferedReader br; 
+				try{
+					br = new BufferedReader(new FileReader("User.txt"));
+					String linea = br.readLine();
+					
+					while(linea!=null) 
+					{
+						String[] datos=null;
+						datos=linea.split(",");
+						if(datos[2].equals(email) &&
+								datos[3].equals(pass))
+						{
+							System.out.println("acceso");
+
+//							JOptionPane.showMessageDialog(null,"Acceso correcto");
+//							break;
+						}
+						linea=br.readLine();
+					}
+				
+				}catch(IOException e1)
+				{
+					e1.printStackTrace();
+					
+				}
+				
+						}
+					});
 		JButton cancel=new JButton(cancelar);
 		cancel.setLocation(150,410);
 		cancel.setSize(120,35);
