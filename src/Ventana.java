@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -415,9 +417,9 @@ public class Ventana extends JFrame{
 			JTextField crearCampoEmail = new JTextField();
 			crearCampoEmail.setSize(200, 40);
 			crearCampoEmail.setLocation(400, 200);
-			JPasswordField crearCampoContraseña = new JPasswordField();
-			crearCampoContraseña.setSize(200, 40);
-			crearCampoContraseña.setLocation(400, 250);
+			JPasswordField crearCampoContrasena = new JPasswordField();
+			crearCampoContrasena.setSize(200, 40);
+			crearCampoContrasena.setLocation(400, 250);
 			JPasswordField crearConfirmarContraseña1 = new JPasswordField();
 			crearConfirmarContraseña1.setSize(200, 40);
 			crearConfirmarContraseña1.setLocation(400, 300);
@@ -439,6 +441,37 @@ public class Ventana extends JFrame{
 			aceptar2.setLocation(500, 360);
 			aceptar2.setOpaque(true);
 			aceptar2.setBackground(Color.decode("#32CD32"));
+			aceptar2.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					BufferedWriter writer;
+
+					String n = crerCampoNombre.getText();
+					String a = crearCampoApellido.getText();
+					String m = crearCampoEmail.getText();
+					String p = new String(crearCampoContrasena.getPassword());
+
+					try {
+
+						 writer = new BufferedWriter(new FileWriter("User.txt",true));
+
+						 writer.newLine();
+						 writer.append(n+","+a+","+m+","+p);
+
+						 writer.close();
+							JOptionPane.showMessageDialog(null,"Usuario creado exitosamente");
+
+
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+
+				}
+
+			});
+					
+				
 			
 			panelUsuario.add(micuenta2);
 			panelUsuario.add(crearNombre);
@@ -450,7 +483,7 @@ public class Ventana extends JFrame{
 			panelUsuario.add(crerCampoNombre);
 			panelUsuario.add(crearCampoApellido);
 			panelUsuario.add(crearCampoEmail);
-			panelUsuario.add(crearCampoContraseña);
+			panelUsuario.add(crearCampoContrasena);
 			panelUsuario.add(crearConfirmarContraseña1);
 			panelUsuario.add(cancel2);
 			panelUsuario.add(aceptar2);
@@ -485,6 +518,31 @@ public class Ventana extends JFrame{
 			String datos[][]= {{"","",""},{"","",""},{"","",""},{"","",""},{"","",""},{"","",""},{"","",""}
 			,{"","",""},{"","",""},{"","",""},{"","",""}
 			,{"","",""},{"","",""},{"","",""}};
+			
+			
+					
+					BufferedReader br; 
+					try{
+						br = new BufferedReader(new FileReader("User.txt"));
+						String linea = br.readLine();
+						int a=0;
+						
+						while(linea!=null) 
+						{
+							String[] data=null;
+							data=linea.split(",");
+							datos[a][0]=data[0];
+							datos[a][1]=data[2];
+							a++;
+							linea=br.readLine();
+						}
+					
+					}catch(IOException e1)
+					{
+						e1.printStackTrace();
+						
+					}
+			
 			String columnas[]= {"Usuario","Correo","Acciones"};
 			JTable tabla = new JTable(datos,columnas);
 			tabla.setSize(300,140);
